@@ -1,10 +1,8 @@
 package com.shuke.my_test.data_capture.task;
 
 
-import cn.hutool.core.util.RandomUtil;
-import com.shuke.my_test.data_capture.service.DataParseService;
+import com.shuke.my_test.data_capture.service.data_parse.DataParseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,7 +18,7 @@ public class DataParseSchedule {
     /**
      * 每1分钟执行一次
      */
-    @Scheduled(cron = "0 0/1 * * * ?")
+//    @Scheduled(cron = "0 0/1 * * * ?")
     public void dataParse() {
        dataParseService.parseAndStoreData();
 

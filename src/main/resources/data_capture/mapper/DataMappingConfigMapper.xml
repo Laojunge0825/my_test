@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shuke.my_test.data_capture01.mapper.DataMappingConfigMapper">
+
+    <resultMap id="BaseResultMap" type="com.shuke.my_test.data_capture01.domain.DataMappingConfig">
+            <id property="id" column="id" />
+            <result property="pointAddress" column="point_address" />
+            <result property="targetTable" column="target_table" />
+            <result property="targetField" column="target_field" />
+            <result property="protocolType" column="protocol_type" />
+            <result property="deviceId" column="device_id" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,point_address,target_table,target_field,protocol_type,device_id
+    </sql>
+</mapper>
