@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shuke.my_test.data_capture.mapper.BmsMapper">
+
+    <resultMap id="BaseResultMap" type="com.shuke.my_test.data_capture.domain.Bms">
+            <id property="id" column="id" />
+            <result property="slaveId" column="slave_id" />
+            <result property="i" column="i" />
+            <result property="vol" column="vol" />
+            <result property="power" column="power" />
+            <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,slave_id,i,vol,power,create_time
+    </sql>
+</mapper>
