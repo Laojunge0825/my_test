@@ -7,10 +7,13 @@ import com.shuke.my_test.data_capture.domain.DataMappingConfig;
 import com.shuke.my_test.data_capture.domain.Master;
 import com.shuke.my_test.data_capture.mapper.DataMappingConfigMapper;
 import com.shuke.my_test.data_capture.mapper.DynamicTableMapper;
+import com.shuke.my_test.data_capture.mapper.MasterMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -21,13 +24,23 @@ import java.util.Map;
  * @date 2025/4/9 10:29
  * @description
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class DataParseService01 {
     private final DataMappingConfigMapper configMapper;
     private final DynamicTableMapper dynamicTableMapper;
+    private final MasterMapper masterMapper;
 
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void parseAndSaveData(Master master) {
+
+        // 记录线程开始处理
+        log.info("线程[{}]开始处理数据ID: {}",
+                Thread.currentThread().getName(),
+                master.getId());
+
         // 确定协议类型
         String protocolType = master.getSlaveId() == 0 ? "iec104" : "modbus";
 
@@ -49,6 +62,10 @@ public class DataParseService01 {
                 tableDataMap.computeIfAbsent(config.getTargetTable(), k -> new HashMap<>())
                         .put(config.getTargetField(), entry.getValue());
             }
+
+            // 标记为已处理
+            master.setStatus(1);
+            masterMapper.updateById(master);
 
 
         }
