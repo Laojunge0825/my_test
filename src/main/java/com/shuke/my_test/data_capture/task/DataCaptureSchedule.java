@@ -34,7 +34,7 @@ public class DataCaptureSchedule {
     /**
      * 每1分钟执行一次
      */
-    @Scheduled(cron = "*/5 * * * * ?")
+//    @Scheduled(cron = "*/5 * * * * ?")
     public void dataCapture() {
         // 随机生成3-5条数据
         int count = RandomUtil.randomInt(3, 6);

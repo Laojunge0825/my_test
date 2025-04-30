@@ -29,7 +29,7 @@ public class DataProcessScheduler {
     /**
      * 每1分钟执行一次
      */
-    @Scheduled(cron = "*/10 * * * * ?")
+//    @Scheduled(cron = "*/10 * * * * ?")
     public void processUnparsedData() {
         // 查询未处理的数据
         List<Master> unprocessedData = masterMapper.selectList(
